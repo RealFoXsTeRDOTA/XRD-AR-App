@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 
 public class InputManager : MonoBehaviour
 {
@@ -12,14 +13,12 @@ public class InputManager : MonoBehaviour
     private GameObject _spawnablePrefab;
 
     private const string Spawnable = "Spawnable";
-    private Camera _arCam;
     private GameObject _spawnedObject;
     protected InputAction _pressAction;
 
     protected virtual void Awake()
     {
         _pressAction = new InputAction("touch", binding: "<Pointer>/press");
-        _arCam = GameObject.Find("Main Camera").GetComponent<Camera>();
         _pressAction.started += ctx =>
         {
             if (ctx.control.device is Pointer device)
@@ -56,15 +55,11 @@ public class InputManager : MonoBehaviour
 
     protected virtual void OnPress(Vector3 position)
     {
-        var ray = _arCam.ScreenPointToRay(position);
-        var _hits = new List<ARRaycastHit>();
+        var hits = new List<ARRaycastHit>();
 
-        if (_arRaycastManager.Raycast(position, _hits))
+        if (_arRaycastManager.Raycast(position, hits, TrackableType.PlaneWithinPolygon))
         {
-            if (Physics.Raycast(ray, out var hit))
-            {
-                SpawnPrefab(hit.point);
-            }
+            SpawnPrefab(hits[0].pose.position);
         }
     }
 

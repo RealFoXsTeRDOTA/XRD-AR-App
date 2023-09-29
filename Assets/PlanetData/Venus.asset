@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25badce2020e21c4a9e20b2a7e9bf9d1, type: 3}
-  m_Name: Earth
+  m_Name: Venus
   m_EditorClassIdentifier: 
-  name: Earth
-  mass: 5.97
-  diameter: 12756
-  density: 5514
-  gravity: 9.8
-  lengthOfDay: 24
-  distanceFromSun: 149.6
-  orbitalPeriod: 365.2
-  orbitalVelocity: 29.8
-  meanTemperature: 15
-  moonCount: 1
+  name: Venus
+  mass: 4.87
+  diameter: 12104
+  density: 5243
+  gravity: 8.9
+  lengthOfDay: 2802
+  distanceFromSun: 108.2
+  orbitalPeriod: 224.7
+  orbitalVelocity: 35
+  meanTemperature: 464
+  moonCount: 0

@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25badce2020e21c4a9e20b2a7e9bf9d1, type: 3}
-  m_Name: Earth
+  m_Name: Neptune
   m_EditorClassIdentifier: 
-  name: Earth
-  mass: 5.97
-  diameter: 12756
-  density: 5514
-  gravity: 9.8
-  lengthOfDay: 24
-  distanceFromSun: 149.6
-  orbitalPeriod: 365.2
-  orbitalVelocity: 29.8
-  meanTemperature: 15
-  moonCount: 1
+  name: Neptune
+  mass: 102
+  diameter: 49528
+  density: 1638
+  gravity: 11
+  lengthOfDay: 16.1
+  distanceFromSun: 4515
+  orbitalPeriod: 59800
+  orbitalVelocity: 5.4
+  meanTemperature: -200
+  moonCount: 14
