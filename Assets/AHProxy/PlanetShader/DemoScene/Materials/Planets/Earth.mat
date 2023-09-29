@@ -89,13 +89,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AtmosphereDensity: 5
+    - _AtmosphereDensity: 5.96
     - _AtmosphereStrength: 4.88
     - _BumpScale: 5
-    - _CityLightIntensity: 0.4
+    - _CityLightIntensity: 1.055
     - _CityNightIntensity: 0
-    - _CloudMapSpecularity: 0.01
-    - _CloudPanSpeed: -0.08
+    - _CloudMapSpecularity: 1
+    - _CloudPanSpeed: -0.024
     - _Cutoff: 0.5
     - _DetailMapSpecularity: -0.94
     - _DetailNormalMapScale: 1
@@ -104,7 +104,7 @@ Material:
     - _GlossMapScale: 0.938
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HeightmapIntensity: 1.61
+    - _HeightmapIntensity: 0.8
     - _LightAtmosphereFX: 0.5
     - _LightStretch: 0.5
     - _Metallic: 0
@@ -123,7 +123,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _AtmosphereColor: {r: 0.51427335, g: 0.6587051, b: 0.85294116, a: 1}
+    - _AtmosphereColor: {r: 0.5137255, g: 0.65702784, b: 0.85490197, a: 1}
     - _CityLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _CloudColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
