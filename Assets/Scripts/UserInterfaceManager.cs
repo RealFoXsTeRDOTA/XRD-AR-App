@@ -21,15 +21,15 @@ public class UserInterfaceManager : MonoBehaviour
         var planetDetails = planet.PlanetDetails;
 
         planetName.text = planetDetails.Name;
-        planetMass.text = $"{planetDetails.Mass} (10^24 kg)";
+        planetMass.text = $"{planetDetails.Mass} (10²⁴  kg)";
         planetDiameter.text = $"{planetDetails.Diameter} (km)";
-        planetDensity.text = $"{planetDetails.Density} (kg/m^3)";
-        planetGravity.text = $"{planetDetails.Gravity} (m/s^2)";
+        planetDensity.text = $"{planetDetails.Density} (kg/m³)";
+        planetGravity.text = $"{planetDetails.Gravity} (m/s²)";
         planetLengthOfDay.text = $"{planetDetails.LengthOfDay} (hrs)";
-        planetDistanceFromSun.text = $"{planetDetails.DistanceFromSun} (10^6 km)";
+        planetDistanceFromSun.text = $"{planetDetails.DistanceFromSun}M km)";
         planetOrbitalPeriod.text = $"{planetDetails.OrbitalPeriod} (days)";
         planetOrbitalVelocity.text = $"{planetDetails.OrbitalVelocity} (km/s)";
-        planetMeanTemperature.text = $"{planetDetails.MeanTemperature} (�C)";
+        planetMeanTemperature.text = $"{planetDetails.MeanTemperature} (ºC)";
         planetMoonCount.text = $"{planetDetails.MoonCount}";
         userInterface.SetActive(true);
     }
