@@ -6,15 +6,18 @@ using UnityEngine.XR.ARFoundation;
 public class InputManager : MonoBehaviour
 {
     [SerializeField]
-    private ARRaycastManager _arRaycastManager;
+    private ARRaycastManager arRaycastManager;
 
     [SerializeField]
-    private GameObject _spawnablePrefab;
+    private GameObject spawnablePrefab;
 
-    private const string Spawnable = "Spawnable";
+    private const string Planet = "Planet";
     private Camera _arCam;
-    private GameObject _spawnedObject;
-    protected InputAction _pressAction;
+    private GameObject _solarSystem;
+    private InputAction _pressAction;
+
+    private GameObject _selectedPlanet;
+    private Vector3 _planetPreviousPosition;
 
     protected virtual void Awake()
     {
@@ -38,6 +41,18 @@ public class InputManager : MonoBehaviour
 
         _pressAction.canceled += _ => OnPressCancel();
     }
+    
+    private void Update()
+    {
+        if (_selectedPlanet != null)
+        {
+            var camTransform = _arCam.transform;
+            _selectedPlanet.transform.position = Vector3.Lerp(
+                _selectedPlanet.transform.position, 
+                camTransform.position + camTransform.up * 0.3f + camTransform.forward,
+                2 * Time.deltaTime);
+        }
+    }
 
     protected virtual void OnEnable()
     {
@@ -57,14 +72,27 @@ public class InputManager : MonoBehaviour
     protected virtual void OnPress(Vector3 position)
     {
         var ray = _arCam.ScreenPointToRay(position);
-        var _hits = new List<ARRaycastHit>();
+        var hits = new List<ARRaycastHit>();
 
-        if (_arRaycastManager.Raycast(position, _hits))
+        if (!arRaycastManager.Raycast(position, hits))
         {
-            if (Physics.Raycast(ray, out var hit))
-            {
-                SpawnPrefab(hit.point);
-            }
+            return;
+        }
+
+        if (!Physics.Raycast(ray, out var hit))
+        {
+            return;
+        }
+        
+        var touchedObject = hit.transform.gameObject;
+        switch (touchedObject.tag)
+        {
+            case Planet:
+                HandlePlanetPosition(touchedObject);
+                break;
+            default:
+                SpawnSolarSystem(hit.point);
+                break;
         }
     }
 
@@ -72,15 +100,31 @@ public class InputManager : MonoBehaviour
 
     protected virtual void OnPressCancel() { }
 
-    private void SpawnPrefab(Vector3 spawnPosition)
+    private void SpawnSolarSystem(Vector3 spawnPosition)
     {
-        var spawnedObjects = GameObject.FindGameObjectsWithTag(Spawnable);
-        foreach (var spawnedObject in spawnedObjects)
-        {
-            Destroy(spawnedObject);
-        }
-
+        Destroy(_solarSystem);
         spawnPosition.y += 1;
-        _spawnedObject = Instantiate(_spawnablePrefab, spawnPosition, Quaternion.identity);
+        _solarSystem = Instantiate(spawnablePrefab, spawnPosition, Quaternion.identity);
+    }
+
+    private void HandlePlanetPosition(GameObject planet)
+    {
+        if (_selectedPlanet == planet)
+        {
+            _selectedPlanet.transform.position = _planetPreviousPosition;
+            _selectedPlanet.GetComponent<Orbit>().enabled = true;
+            _selectedPlanet = null;
+        }
+        else
+        {
+            if (_selectedPlanet != null)
+            {
+                _selectedPlanet.GetComponent<Orbit>().enabled = true;
+                _selectedPlanet.transform.position = _planetPreviousPosition;
+            }
+            _selectedPlanet = planet;
+            _planetPreviousPosition = planet.transform.position;
+            _selectedPlanet.GetComponent<Orbit>().enabled = false;
+        }
     }
 }
