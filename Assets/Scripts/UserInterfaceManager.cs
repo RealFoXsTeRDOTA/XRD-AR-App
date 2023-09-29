@@ -16,8 +16,10 @@ public class UserInterfaceManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI planetMeanTemperature;
     [SerializeField] private TextMeshProUGUI planetMoonCount;
 
-    public void ShowPlanetDetails(PlanetDetails planetDetails)
+    public void ShowPlanetDetails(Planet planet)
     {
+        var planetDetails = planet.PlanetDetails;
+
         planetName.text = planetDetails.Name;
         planetMass.text = $"{planetDetails.Mass} (10^24 kg)";
         planetDiameter.text = $"{planetDetails.Diameter} (km)";

@@ -16,20 +16,14 @@ public class InputManager : MonoBehaviour
     private Camera _arCam;
     private GameObject _solarSystem;
     private InputAction _pressAction;
-
+    private UserInterfaceManager userInterface;
     private GameObject _selectedPlanet;
     private Vector3 _planetPreviousPosition;
 
-    protected virtual void Awake()
+    private void Awake()
     {
         _pressAction = new InputAction("touch", binding: "<Pointer>/press");
-        _pressAction.started += ctx =>
-        {
-            if (ctx.control.device is Pointer device)
-            {
-                OnPressBegan(device.position.ReadValue());
-            }
-        };
+        _arCam = GameObject.Find("Main Camera").GetComponent<Camera>();
 
         _pressAction.performed += ctx =>
         {
@@ -39,7 +33,8 @@ public class InputManager : MonoBehaviour
             }
         };
 
-        _pressAction.canceled += _ => OnPressCancel();
+        _pressAction.Enable();
+        userInterface = GetComponent<UserInterfaceManager>();
     }
 
     private void Update()
@@ -54,57 +49,39 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    protected virtual void OnEnable()
-    {
-        _pressAction.Enable();
-    }
-
-    protected virtual void OnDisable()
-    {
-        _pressAction.Disable();
-    }
-
-    protected virtual void OnDestroy()
+    private void OnDestroy()
     {
         _pressAction.Dispose();
     }
 
-    protected virtual void OnPress(Vector3 position)
+    private void OnPress(Vector3 position)
     {
+        var ray = _arCam.ScreenPointToRay(position);
+
+        if (Physics.Raycast(ray, out var hit))
+        {
+            var touchedObject = hit.transform.gameObject;
+            if (touchedObject.CompareTag(Planet))
+            {
+                HandlePlanetPosition(touchedObject);
+                return;
+            }
+        }
+
         var hits = new List<ARRaycastHit>();
 
         if (arRaycastManager.Raycast(position, hits, TrackableType.PlaneWithinPolygon))
         {
             SpawnSolarSystem(hits[0].pose.position);
         }
-        else
-        {
-            var ray = _arCam.ScreenPointToRay(position);
-
-            if (!Physics.Raycast(ray, out var hit))
-            {
-                return;
-            }
-
-            var touchedObject = hit.transform.gameObject;
-            if (!touchedObject.CompareTag(Planet))
-            {
-                return;
-            }
-
-            HandlePlanetPosition(touchedObject);
-        }
     }
-
-    protected virtual void OnPressBegan(Vector3 position) { }
-
-    protected virtual void OnPressCancel() { }
 
     private void SpawnSolarSystem(Vector3 spawnPosition)
     {
         Destroy(_solarSystem);
         spawnPosition.y += 1;
         _solarSystem = Instantiate(spawnablePrefab, spawnPosition, Quaternion.identity);
+        userInterface.HidePlanetDetails();
     }
 
     private void HandlePlanetPosition(GameObject planet)
@@ -114,6 +91,7 @@ public class InputManager : MonoBehaviour
             _selectedPlanet.transform.position = _planetPreviousPosition;
             _selectedPlanet.GetComponent<Orbit>().enabled = true;
             _selectedPlanet = null;
+            userInterface.HidePlanetDetails();
         }
         else
         {
@@ -125,6 +103,7 @@ public class InputManager : MonoBehaviour
             _selectedPlanet = planet;
             _planetPreviousPosition = planet.transform.position;
             _selectedPlanet.GetComponent<Orbit>().enabled = false;
+            userInterface.ShowPlanetDetails(_selectedPlanet.GetComponent<Planet>());
         }
     }
 }
