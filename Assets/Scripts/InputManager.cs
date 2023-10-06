@@ -85,6 +85,7 @@ public class InputManager : MonoBehaviour
 
     private void SpawnSolarSystem(Vector3 spawnPosition)
     {
+        StopAllCoroutines();
         Destroy(_solarSystem);
         spawnPosition.y += 1;
         _solarSystem = Instantiate(spawnablePrefab, spawnPosition, Quaternion.identity);

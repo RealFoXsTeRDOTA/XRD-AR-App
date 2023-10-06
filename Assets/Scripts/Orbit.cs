@@ -3,12 +3,16 @@ using UnityEngine;
 public class Orbit : MonoBehaviour
 {
     [SerializeField] private GameObject objectToOrbit;
-    [SerializeField] private float currentAngle = 0f;
     [SerializeField] private float orbitSpeed = 0.4f;
+
+    private float currentAngle = 0f;
     private const float scale = 0.02f;
     private float _sliderValue = 1;
+    private float orbitDistance = 0f;
+    private const float oneFullRotation = 2 * Mathf.PI;
 
-    private float orbitDistance;
+    public float OrbitalPeriodPercentage => currentAngle % oneFullRotation / oneFullRotation * 100;
+    public int YearsPassed => (int)(currentAngle / oneFullRotation);
 
     private void Start()
     {
