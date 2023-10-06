@@ -89,6 +89,7 @@ public class InputManager : MonoBehaviour
         spawnPosition.y += 1;
         _solarSystem = Instantiate(spawnablePrefab, spawnPosition, Quaternion.identity);
         userInterface.HidePlanetDetails();
+        GetComponent<SimulationManager>().UpdateOrbitAndRotationScripts();
     }
 
     private void HandlePlanetPosition(GameObject planet)

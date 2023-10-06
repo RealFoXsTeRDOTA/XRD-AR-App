@@ -6,6 +6,7 @@ public class Orbit : MonoBehaviour
     [SerializeField] private float currentAngle = 0f;
     [SerializeField] private float orbitSpeed = 0.4f;
     private const float scale = 0.02f;
+    private float _sliderValue = 1;
 
     private float orbitDistance;
 
@@ -20,6 +21,11 @@ public class Orbit : MonoBehaviour
         var zPosition = orbitDistance * Mathf.Cos(currentAngle);
 
         transform.localPosition = new Vector3(xPosition, 0f, zPosition);
-        currentAngle += orbitSpeed * Time.deltaTime * scale;
+        currentAngle += orbitSpeed * Time.deltaTime * (scale * _sliderValue);
+    }
+
+    public void SetSliderValue(float value)
+    {
+        _sliderValue = value;
     }
 }
