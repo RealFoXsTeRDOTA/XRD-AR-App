@@ -15,6 +15,8 @@ public class UserInterfaceManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI planetOrbitalVelocity;
     [SerializeField] private TextMeshProUGUI planetMeanTemperature;
     [SerializeField] private TextMeshProUGUI planetMoonCount;
+    [SerializeField] private TextMeshProUGUI daysPassedCount;
+    [SerializeField] private TextMeshProUGUI yearsPassedCount;
 
     public void ShowPlanetDetails(Planet planet)
     {
@@ -31,6 +33,8 @@ public class UserInterfaceManager : MonoBehaviour
         planetOrbitalVelocity.text = $"{planetDetails.OrbitalVelocity} (km/s)";
         planetMeanTemperature.text = $"{planetDetails.MeanTemperature} (ºC)";
         planetMoonCount.text = $"{planetDetails.MoonCount}";
+        daysPassedCount.text = $"{(int)(planetDetails.OrbitalPeriod / 100 * planet.Orbit.OrbitalPeriodPercentage + (planetDetails.OrbitalPeriod * planet.Orbit.YearsPassed))}";
+        yearsPassedCount.text = $"{planet.Orbit.YearsPassed}";
         userInterface.SetActive(true);
     }
 

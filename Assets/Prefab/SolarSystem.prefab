@@ -63,7 +63,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToOrbit: {fileID: 8787508481626935913}
-  currentAngle: 0
   orbitSpeed: 24.1
 --- !u!135 &2560667425281817567
 SphereCollider:
@@ -99,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetDetails: {fileID: 11400000, guid: 33f9f0e674fd5134caca8485823acd31, type: 2}
+  orbit: {fileID: 746213548266666909}
 --- !u!96 &2770444803337918430
 TrailRenderer:
   serializedVersion: 3
@@ -141,7 +141,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 10
+  m_Time: 20
   m_PreviewTimeScale: 0
   m_Parameters:
     serializedVersion: 3
@@ -419,7 +419,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToOrbit: {fileID: 8787508481626935913}
-  currentAngle: 0
   orbitSpeed: 10.7
 --- !u!135 &4660902630972988826
 SphereCollider:
@@ -455,6 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetDetails: {fileID: 11400000, guid: 457a3102b4742674890ff8fbdc21c51c, type: 2}
+  orbit: {fileID: 910116924587772161}
 --- !u!96 &3414933475544525831
 TrailRenderer:
   serializedVersion: 3
@@ -497,7 +497,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 10
+  m_Time: 30
   m_PreviewTimeScale: 0
   m_Parameters:
     serializedVersion: 3
@@ -622,7 +622,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToOrbit: {fileID: 8787508481626935913}
-  currentAngle: 0
   orbitSpeed: 4.7
 --- !u!135 &6240938087105061677
 SphereCollider:
@@ -658,6 +657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetDetails: {fileID: 11400000, guid: 7c815fd925df3464da4ae2ec56a3f9a7, type: 2}
+  orbit: {fileID: 6807920547604826775}
 --- !u!96 &642761411631884277
 TrailRenderer:
   serializedVersion: 3
@@ -700,7 +700,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 10
+  m_Time: 70
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -919,7 +919,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToOrbit: {fileID: 8787508481626935913}
-  currentAngle: 0
   orbitSpeed: 29.8
 --- !u!135 &5251573324218669899
 SphereCollider:
@@ -955,6 +954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetDetails: {fileID: 11400000, guid: 220baf23a4332ae45b4015b286e821ea, type: 2}
+  orbit: {fileID: 2345386621978256792}
 --- !u!96 &1417561978325444813
 TrailRenderer:
   serializedVersion: 3
@@ -997,7 +997,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 10
+  m_Time: 15
   m_PreviewTimeScale: 0
   m_Parameters:
     serializedVersion: 3
@@ -1205,7 +1205,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToOrbit: {fileID: 8787508481626935913}
-  currentAngle: 0
   orbitSpeed: 35
 --- !u!135 &1790432593880187200
 SphereCollider:
@@ -1241,6 +1240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetDetails: {fileID: 11400000, guid: 4123f5d14985f2a40b6ae327462fb024, type: 2}
+  orbit: {fileID: 1571926150353419803}
 --- !u!96 &7229400746934120983
 TrailRenderer:
   serializedVersion: 3
@@ -1408,7 +1408,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToOrbit: {fileID: 8787508481626935913}
-  currentAngle: 0
   orbitSpeed: 13.1
 --- !u!135 &5030642931902033294
 SphereCollider:
@@ -1444,6 +1443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetDetails: {fileID: 11400000, guid: 38f171034e5820440a2b11823f36e6ce, type: 2}
+  orbit: {fileID: 1146565182017898443}
 --- !u!96 &6344027239955965948
 TrailRenderer:
   serializedVersion: 3
@@ -1486,7 +1486,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 10
+  m_Time: 25
   m_PreviewTimeScale: 0
   m_Parameters:
     serializedVersion: 3
@@ -1611,7 +1611,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToOrbit: {fileID: 8787508481626935913}
-  currentAngle: 0
   orbitSpeed: 5.4
 --- !u!135 &1643690360145722834
 SphereCollider:
@@ -1647,6 +1646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetDetails: {fileID: 11400000, guid: b42523bb6b01f6741bd76101b039759f, type: 2}
+  orbit: {fileID: 4175163403486322964}
 --- !u!96 &2281094122694177271
 TrailRenderer:
   serializedVersion: 3
@@ -1689,7 +1689,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 10
+  m_Time: 60
   m_PreviewTimeScale: 0
   m_Parameters:
     serializedVersion: 3
@@ -2285,7 +2285,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToOrbit: {fileID: 8787508481626935913}
-  currentAngle: 0
   orbitSpeed: 47.4
 --- !u!135 &7773100985520642247
 SphereCollider:
@@ -2321,6 +2320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetDetails: {fileID: 11400000, guid: b9f9c0d36ee6a93418997643411b575a, type: 2}
+  orbit: {fileID: 181332027747023154}
 --- !u!96 &6760806937077987695
 TrailRenderer:
   serializedVersion: 3
@@ -2571,7 +2571,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToOrbit: {fileID: 8787508481626935913}
-  currentAngle: 0
   orbitSpeed: 6.8
 --- !u!135 &1035963381112122990
 SphereCollider:
@@ -2607,6 +2606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetDetails: {fileID: 11400000, guid: cc5fab69231ab474ebdce1015a531b7f, type: 2}
+  orbit: {fileID: 1821159003035665393}
 --- !u!96 &1784577841348706190
 TrailRenderer:
   serializedVersion: 3
@@ -2649,7 +2649,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 10
+  m_Time: 50
   m_PreviewTimeScale: 0
   m_Parameters:
     serializedVersion: 3
