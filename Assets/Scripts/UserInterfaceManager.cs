@@ -11,7 +11,7 @@ public class UserInterfaceManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI planetGravity;
     [SerializeField] private TextMeshProUGUI planetLengthOfDay;
     [SerializeField] private TextMeshProUGUI planetDistanceFromSun;
-    [SerializeField] private TextMeshProUGUI planetOrbitalPeriod;
+    [SerializeField] private TextMeshProUGUI planetLengthOfYear;
     [SerializeField] private TextMeshProUGUI planetOrbitalVelocity;
     [SerializeField] private TextMeshProUGUI planetMeanTemperature;
     [SerializeField] private TextMeshProUGUI planetMoonCount;
@@ -21,13 +21,13 @@ public class UserInterfaceManager : MonoBehaviour
         var planetDetails = planet.PlanetDetails;
 
         planetName.text = planetDetails.Name;
-        planetMass.text = $"{planetDetails.Mass} (10²⁴  kg)";
+        planetMass.text = $"{planetDetails.Mass} (10²⁴ kg)";
         planetDiameter.text = $"{planetDetails.Diameter} (km)";
         planetDensity.text = $"{planetDetails.Density} (kg/m³)";
         planetGravity.text = $"{planetDetails.Gravity} (m/s²)";
         planetLengthOfDay.text = $"{planetDetails.LengthOfDay} (hrs)";
-        planetDistanceFromSun.text = $"{planetDetails.DistanceFromSun}M km)";
-        planetOrbitalPeriod.text = $"{planetDetails.OrbitalPeriod} (days)";
+        planetDistanceFromSun.text = $"{planetDetails.DistanceFromSun}M (km)";
+        planetLengthOfYear.text = $"{planetDetails.OrbitalPeriod} (days)";
         planetOrbitalVelocity.text = $"{planetDetails.OrbitalVelocity} (km/s)";
         planetMeanTemperature.text = $"{planetDetails.MeanTemperature} (ºC)";
         planetMoonCount.text = $"{planetDetails.MoonCount}";

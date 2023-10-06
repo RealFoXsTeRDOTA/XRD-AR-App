@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Spawnable
   - Planet
+  - Sun
   layers:
   - Default
   - TransparentFX

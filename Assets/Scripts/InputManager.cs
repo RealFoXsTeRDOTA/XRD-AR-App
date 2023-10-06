@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,12 +7,11 @@ using UnityEngine.XR.ARSubsystems;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField]
-    private ARRaycastManager arRaycastManager;
+    [SerializeField] private ARRaycastManager arRaycastManager;
+    [SerializeField] private GameObject spawnablePrefab;
+    [SerializeField] private float returnToOrbitSeconds = 1.5f;
 
-    [SerializeField]
-    private GameObject spawnablePrefab;
-
+    private const string Sun = "Sun";
     private const string Planet = "Planet";
     private Camera _arCam;
     private GameObject _solarSystem;
@@ -61,9 +61,16 @@ public class InputManager : MonoBehaviour
         if (Physics.Raycast(ray, out var hit))
         {
             var touchedObject = hit.transform.gameObject;
+
             if (touchedObject.CompareTag(Planet))
             {
                 HandlePlanetPosition(touchedObject);
+                return;
+            }
+            else if (touchedObject.CompareTag(Sun))
+            {
+                StopAllCoroutines();
+                Destroy(_solarSystem);
                 return;
             }
         }
@@ -88,22 +95,43 @@ public class InputManager : MonoBehaviour
     {
         if (_selectedPlanet == planet)
         {
-            _selectedPlanet.transform.position = _planetPreviousPosition;
-            _selectedPlanet.GetComponent<Orbit>().enabled = true;
-            _selectedPlanet = null;
             userInterface.HidePlanetDetails();
+            StartCoroutine(ReturnToOrbit(_selectedPlanet, _planetPreviousPosition));
+            _selectedPlanet = null;
         }
         else
         {
+            if (!planet.GetComponent<Orbit>().enabled)
+            {
+                return;
+            }
+
             if (_selectedPlanet != null)
             {
-                _selectedPlanet.GetComponent<Orbit>().enabled = true;
-                _selectedPlanet.transform.position = _planetPreviousPosition;
+                StartCoroutine(ReturnToOrbit(_selectedPlanet, _planetPreviousPosition));
             }
+
             _selectedPlanet = planet;
             _planetPreviousPosition = planet.transform.position;
             _selectedPlanet.GetComponent<Orbit>().enabled = false;
+            _selectedPlanet.GetComponent<TrailRenderer>().emitting = false;
             userInterface.ShowPlanetDetails(_selectedPlanet.GetComponent<Planet>());
         }
+    }
+
+    private IEnumerator ReturnToOrbit(GameObject planet, Vector3 endPosition)
+    {
+        var startPosition = planet.transform.position;
+        var elapsedTime = 0f;
+
+        while (elapsedTime < returnToOrbitSeconds)
+        {
+            planet.transform.position = Vector3.Lerp(startPosition, endPosition, (elapsedTime / returnToOrbitSeconds));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        planet.GetComponent<Orbit>().enabled = true;
+        planet.GetComponent<TrailRenderer>().emitting = true;
     }
 }
